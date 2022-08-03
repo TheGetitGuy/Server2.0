@@ -12,6 +12,7 @@ const createTransporter = async () => {
         auth:{
             type:"OAuth2",
             user: process.env.USERVAR,
+            pass: process.env.USERPASS
             clientId: process.env.OAUTH_CLIENTID,
             clientSecret:process.env.OAUTH_CLIENT_SECRET,
             refreshToken: process.env.OAUTH_REFRESH_TOKEN
@@ -28,7 +29,7 @@ const sendEmail = async (emailOptions) => {
 router.post('/mailer', function(req, res){
     res.send('sick Email')
     console.log(req.body.Email)
-    handleEmail(res.body)
+    handleEmail(req.body)
 })
 router.get('/mailer', function(req, res){
     res.send('this should be a post')
