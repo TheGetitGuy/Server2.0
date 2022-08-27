@@ -34,7 +34,6 @@ router.post('/mailer', function(req, res){
 router.get('/mailer', function(req, res){
     res.send('this should be a post')
 })
-module.exports = router
 
 
 function handleEmail(response){
@@ -43,5 +42,6 @@ function handleEmail(response){
         text:`Subject-${response.Subject}:${response.Body}`,
         to:'thegetitguy@gmail.com'
     })
-
+    
 }
+module.exports = router
