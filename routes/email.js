@@ -1,30 +1,20 @@
 const express = require('express');
 const router = express.Router();
 const nodemailer = require('nodemailer')
-
+const fetch = require('node-fetch')
 router.use(express.json());
 router.use(express.urlencoded({extended:true}));
+const url = 'https://rapidprod-sendgrid-v1.p.rapidapi.com/mail/send';
 
-const createTransporter = async () => {
-    
-    const transporter = nodemailer.createTransport({
-        service: "gmail",
-        auth:{
-            type:"OAuth2",
-            user: process.env.USERVAR,
-            pass: process.env.USERPASS,
-            clientId: process.env.OAUTH_CLIENTID,
-            clientSecret:process.env.OAUTH_CLIENT_SECRET,
-            refreshToken: process.env.OAUTH_REFRESH_TOKEN
-            },
-        });
-return transporter
-}
-const sendEmail = async (emailOptions) => {
-    let emailTransporter = await createTransporter();
-    await emailTransporter.sendMail(emailOptions)
-}
-
+const options = {
+    method: 'POST',
+    headers: {
+      'content-type': 'application/json',
+      'X-RapidAPI-Key': process.env.SENDEMAILKEY,
+      'X-RapidAPI-Host': 'rapidprod-sendgrid-v1.p.rapidapi.com'
+    },
+    body: `{"personalizations":[{"to":[{"email":"thegetitguy@gmail.com"}],"subject":"${res.Subject}"}],"from":{"email":"${res.Email}"},"content":[{"type":"text/plain","value":"${res.Body}"}]}`
+  };
 
 router.post('/mailer', function(req, res){
     res.send('sick Email')
@@ -34,7 +24,9 @@ router.post('/mailer', function(req, res){
 router.get('/mailer', function(req, res){
     res.send('this should be a post')
 })
+function sendEmail(res){
 
+}
 
 function handleEmail(response){
     sendEmail({
