@@ -16,4 +16,4 @@ app.use('/weather', weatherRoute)
 app.get('/express_backend',(req, res)=>{
     res.send({express: 'Connected to React'})
 })
-app.listen(port,()=> console.log(`Listening at ${port}`));
+app.listen(port, ()=> console.log(`Listening at ${port}`));
