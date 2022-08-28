@@ -15,7 +15,7 @@ router.post('/mailer', function(req, res){
 router.get('/mailer', function(req, res){
     res.send('this should be a post')
 })
-function sendEmail(res){
+function sendEmail(resp){
     const options = {
         method: 'POST',
         headers: {
@@ -23,7 +23,7 @@ function sendEmail(res){
           'X-RapidAPI-Key': process.env.SENDEMAILKEY,
           'X-RapidAPI-Host': 'rapidprod-sendgrid-v1.p.rapidapi.com'
         },
-        body: `{"personalizations":[{"to":[{"email":"thegetitguy@gmail.com"}],"subject":"${res.Subject}"}],"from":{"email":"${res.Email}"},"content":[{"type":"text/plain","value":"${res.Body}"}]}`
+        body: `{"personalizations":[{"to":[{"email":"thegetitguy@gmail.com"}],"subject":"${resp.Subject}"}],"from":{"email":"${resp.Email}"},"content":[{"type":"text/plain","value":"${resp.Body}"}]}`
       };
     fetch(url, options)
 	.then(res => res.json())
