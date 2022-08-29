@@ -16,16 +16,12 @@ router.get('/mailer', function(req, res){
     res.send('this should be a post')
 })
 function sendEmail(resp){
-    const options = {
-        method: 'POST',
-        headers: {
-          'content-type': 'application/json',
-          'X-RapidAPI-Key': process.env.SENDEMAILKEY,
-          'X-RapidAPI-Host': 'rapidprod-sendgrid-v1.p.rapidapi.com'
-        },
-        body: `{"personalizations":[{"to":[{"email":"thegetitguy@gmail.com"}],"subject":"${resp.Subject}"}],"from":{"email":"${resp.Email}"},"content":[{"type":"text/plain","value":"${resp.Body}"}]}`
-      };
-    fetch(url, options)
+    const url = new URL('http://xdroid.net/api/message')
+    const k =('k-b6553520859a')
+    const c = ('subject'+ resp.Subject+" body:"+ resp.Body)
+    url.searchParams.append("k",k)
+    url.searchParams.append("c",c)
+    fetch(url)
 	.then(res => res.json())
 	.then(json => console.log(json))
 	.catch(err => console.error('error:' + err));
