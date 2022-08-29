@@ -18,8 +18,10 @@ router.get('/mailer', function(req, res){
 function sendEmail(resp){
     const url = new URL('http://xdroid.net/api/message')
     const k =('k-b6553520859a')
-    const c = ('subject'+ resp.Subject+" body:"+ resp.Body)
+    const t = resp.subject
+    const c = ("body: "+ resp.text)
     url.searchParams.append("k",k)
+    url.searchParams.append("t",k)
     url.searchParams.append("c",c)
     fetch(url)
 	.then(res => res.json())
