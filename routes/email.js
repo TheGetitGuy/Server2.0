@@ -17,7 +17,7 @@ router.get('/mailer', function(req, res){
 })
 function sendEmail(resp){
     const url = new URL('http://xdroid.net/api/message')
-    const k =('k-b6553520859a')
+    const k =(process.env.NOTIFKEY)
     const t = resp.subject
     const c = ("body: "+ resp.text)
     url.searchParams.append("k",k)
