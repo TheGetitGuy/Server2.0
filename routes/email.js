@@ -1,10 +1,13 @@
 const express = require('express');
-const router = express.Router();
-const nodemailer = require('nodemailer')
+const router = express.Router(); 
 const fetch = require('node-fetch')
+const env = require('dotenv')
+
+env.config()
+
 router.use(express.json());
 router.use(express.urlencoded({extended:true}));
-const url = 'https://rapidprod-sendgrid-v1.p.rapidapi.com/mail/send';
+//const url = 'https://rapidprod-sendgrid-v1.p.rapidapi.com/mail/send';
 
 
 router.post('/mailer', function(req, res){
