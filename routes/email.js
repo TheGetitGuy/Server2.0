@@ -10,14 +10,14 @@ router.use(express.urlencoded({extended:true}));
 //const url = 'https://rapidprod-sendgrid-v1.p.rapidapi.com/mail/send';
 
 
-router.get('/mailer', function(req, res){
+router.post('/mailer', function(req, res){
     res.send('sick Email')
     console.log(req.body.Email)
     handleEmail(req.body)
 })
-//router.get('/mailer', function(req, res){
- //   res.send('this should be a post')
-//})
+router.get('/mailer', function(req, res){
+    res.send('this should be a post')
+})
 function sendEmail(resp){
     const url = new URL('http://xdroid.net/api/message')
     const k =(process.env.NOTIFKEY)
