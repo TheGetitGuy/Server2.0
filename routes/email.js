@@ -11,8 +11,7 @@ router.use(express.urlencoded({extended:true}));
 
 
 router.post('/mailer', function(req, res){
-    res.send('sick Email')
-    console.log(req.body.Email)
+    res.send('sick Email') 
     handleEmail(req.body)
 })
 router.get('/mailer', function(req, res){
@@ -26,6 +25,7 @@ function sendEmail(resp){
     url.searchParams.append("k",k)
     url.searchParams.append("t",t)
     url.searchParams.append("c",c)
+    console.log(url)
     fetch(url)
 	.then(res => res.json())
 	.then(json => console.log(json))
@@ -35,8 +35,7 @@ function sendEmail(resp){
 function handleEmail(response){
     sendEmail({
         subject:`msg from ${response.Email}`,
-        text:`Subject-${response.Subject}:${response.Body}`,
-        to:'thegetitguy@gmail.com'
+        text:`Subject-${response.Subject}:${response.Body}`
     })
     
 }
