@@ -23,6 +23,7 @@ router.get('/request', async function (req, res){
           temp: apireturn.days[day].temp,
           icon: apireturn.days[day].icon,
           description: apireturn.days[day].description,
+          address: apireturn.resolvedAddress,
         }
       )
     }
